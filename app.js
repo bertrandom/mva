@@ -3,6 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 
+const mountRoutes = require('./routes');
+
 const app = express();
 
 app.engine('hb', exphbs({
@@ -18,10 +20,8 @@ app.use(express.static('static'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', function (req, res) {
-	res.render('home');
-});
+mountRoutes(app);
 
-app.listen(config.port, function () {
+app.listen(config.port, () => {
 	console.log('Server started on port ' + config.port + '.');
 });
