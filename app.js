@@ -1,6 +1,5 @@
 const config = require('config');
 const express = require('express');
-const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 
 const mountRoutes = require('./routes');
@@ -17,8 +16,8 @@ app.enable('view cache');
 
 app.use(express.static('static'));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 mountRoutes(app);
 
